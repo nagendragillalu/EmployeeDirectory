@@ -7,8 +7,8 @@ WORKDIR /src
 COPY ./EmployeeDirectoryAPI/EmployeeDirectoryAPI.csproj EmployeeDirectoryAPI/
 RUN dotnet restore EmployeeDirectoryAPI/EmployeeDirectoryAPI.csproj
 COPY . .
-#WORKDIR /src/EmployeeDirectoryAPI
-RUN cd EmployeeDirectoryAPI
+
+WORKDIR /src/EmployeeDirectoryAPI
 RUN dotnet build EmployeeDirectoryAPI.csproj -c Release -o /app
 
 FROM build AS publish
