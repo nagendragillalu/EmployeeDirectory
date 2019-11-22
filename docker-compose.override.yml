@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  employeedirectoryapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+    depends_on: [db]
+    
+  frontend:
+    build: .
+    ports:
+      - "4200:4200" 
+    depends_on: [employeedirectoryapi]
+  db:
+     image: "mcr.microsoft.com/mssql/server"
+     volumes:
+         - mssql_db:/var/opt/mssql
+     environment:
+           SA_PASSWORD: "Your_password123"
+           ACCEPT_EULA: "Y"
+
+volumes:
+   mssql_db:
