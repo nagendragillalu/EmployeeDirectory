@@ -1,0 +1,63 @@
+<div class="conatainer">
+        <h2>This Month's Birthdays</h2>
+            <div *ngIf= "bdayCount>0;else:nogreetings">          
+                <mat-grid-list [cols]="breakpoint"  rowHeight="400px" (window:resize)="onResize($event)">
+                    <mat-grid-tile class="mat-grid-tile" colspan="2" *ngFor="let item of bdays" >
+                        <mat-card class="employee-card">
+                            <img mat-card-image [src]="item.photoUrl+item.employeeId" class="img-circle">
+                            <mat-card-footer>
+                                    <a [href]="'mailto:'+item.eMail+'?subject=Comments from MailTo Syntax Page'"><i class="fas fa-envelope" id="s_icon"></i></a>
+                                    <a [href]='item.twitter'><i class="fab fa-twitter" id="s_icon"></i></a>
+                                    <a [href]='item.facebook'><i class="fab fa-facebook-square" id="s_icon"></i></a>
+                            </mat-card-footer>
+                            
+                            <mat-card-actions>
+                                    <a routerLink="/employee/{{item.employeeId}}"> 
+                                        <mat-card-title>{{item.fName}}   {{item.lName}}</mat-card-title>
+                                    </a> 
+                                    <mat-card-subtitle>Bithday on {{item.greetDate | date: 'MMM d'}}</mat-card-subtitle>
+        
+                            </mat-card-actions>
+                        </mat-card>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+            </div>
+            <ng-template #nogreetings>
+                <div class="alert alert-danger" role="alert">
+                    No Bithdays this month
+                  </div>
+            </ng-template>
+</div>
+
+
+<div class="conatainer">
+<h2>This Month's Anniversaries</h2>
+    <div *ngIf= "annCount>0;else:nogreetings">          
+        <mat-grid-list [cols]="breakpoint"  rowHeight="400px" (window:resize)="onResize($event)">
+            <mat-grid-tile class="mat-grid-tile" colspan="2" *ngFor="let item of anniversaries" >
+                <mat-card class="employee-card">
+                    <img mat-card-image [src]="item.photoUrl+item.employeeId" class="img-circle">
+                    <mat-card-footer>
+                            <a [href]="'mailto:'+item.eMail+'?subject=Comments from MailTo Syntax Page'"><i class="fas fa-envelope" id="s_icon"></i></a>
+                            <a [href]='item.twitter'><i class="fab fa-twitter" id="s_icon"></i></a>
+                            <a [href]='item.facebook'><i class="fab fa-facebook-square" id="s_icon"></i></a>
+                    </mat-card-footer>
+                    
+                    <mat-card-actions>
+                            <a routerLink="/employee/{{item.employeeId}}"> 
+                                <mat-card-title>{{item.fName}}   {{item.lName}}</mat-card-title>
+                            </a> 
+                            <mat-card-subtitle>Completes {{item.yearCount}} Years on {{item.greetDate | date: 'MMM d'}}</mat-card-subtitle>
+
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+    </div>
+    <ng-template #nogreetings>
+        <div class="alert alert-danger" role="alert">
+            No Anniversaries this month
+          </div>
+    </ng-template>
+</div>
+

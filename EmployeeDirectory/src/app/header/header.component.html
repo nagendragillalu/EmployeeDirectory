@@ -1,0 +1,30 @@
+
+<mat-toolbar color="primary" class="container-fluid">
+        <mat-toolbar-row>
+        </mat-toolbar-row>
+      
+        <mat-toolbar-row>
+                <span>              
+                  <div style="text-align:left" class="table-responsive">
+                    <img id="siteimage" src="./assets/images/atl.site.png">
+                  </div>
+                </span>
+            </mat-toolbar-row>
+      
+        <mat-toolbar-row>
+          <span style="text-align:center" class="table-responsive"><h1>Employee Directory</h1></span>
+          <span class="example-spacer"></span>
+          <mat-icon class="example-icon" *ngIf="userData">{{userData.name | titlecase}}</mat-icon>
+          <div class="inset" *ngIf="userData">
+                <img [src]="userData.photoUrl">
+            </div>
+           <span *ngIf="userData"> <Button class="btn btn-danger" (click)="callSignOut()">Sign Out</Button></span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+
+    <div class="container-fluid">
+      
+    </div>  
+
+   

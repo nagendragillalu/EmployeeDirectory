@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row">
+    <h2>All Teams</h2>
+  </div>
+
+  <div class="row"  *ngFor="let item of teamData">
+        <a routerLink="/teams/{{item.teamId}}" class="container-fluid">
+          <mat-card id="team_tile" >
+              <h3 matLine>{{item.teamName}}</h3>
+              <p matLine>{{item.teamDicription}}</p>
+          </mat-card>
+        </a>
+  </div>  
+</div>
+

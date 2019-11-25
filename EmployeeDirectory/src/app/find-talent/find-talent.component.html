@@ -1,0 +1,38 @@
+<mat-form-field appearance="outline">
+    <mat-label>Please Select the Skill</mat-label>
+ 
+        <mat-select placeholder=""  [(ngModel)]="searchSkillId" name="SearchBox">
+          <mat-option *ngFor="let item of skillList" [value]="item.skillId">
+            {{item.skillName}}
+          </mat-option>
+        </mat-select>
+</mat-form-field>
+  <br>
+  <button type="button" class="btn btn-primary" (click)="getSkilledEmployee()" >Search</button>
+
+  <div *ngIf="empCount > 0;else:NoSkills" >
+
+        <table class="table table-hover">
+      
+          <tr *ngFor="let item of employeeSkilled">
+            <td><img id="employeeElement"e [src]="item.employeePhotoURL + item.employeeId" alt="Avatar" class="avatar"></td>
+            <td><a  routerLink="/employee/{{item.employeeId}}">
+            <h4 id="employeeElement">{{item.firstName}}</h4><h4 id="employeeElement">{{item.lastName}}</h4></a></td>
+            
+            <td [ngSwitch]="item.skillLevel">
+              <h4  *ngSwitchCase ="'Beginner'" class="text-secondary">{{item.skillLevel}}</h4>
+              <h4  *ngSwitchCase ="'Expert'" class="text-success">{{item.skillLevel}}</h4>
+              <h4  *ngSwitchCase ="'Intermediate'" class="text-info">{{item.skillLevel}}</h4>
+              <h4  *ngSwitchCase ="'Advance'" class="text-danger">{{item.skillLevel}}</h4>
+              <h4  *ngSwitchDefault class="text-secondary">{{item.skillLevel}}</h4>
+            </td>
+           </tr>
+        </table>
+  </div>
+  
+
+  <ng-template #NoSkills>
+      <div class="alert alert-warning" role="alert">
+        No Employee Found for given Skill!
+      </div>
+   </ng-template>

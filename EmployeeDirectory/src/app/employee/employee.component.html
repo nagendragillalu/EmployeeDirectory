@@ -1,0 +1,174 @@
+<mat-card>
+<div  class="container">
+    <div class="row">
+      <div class="col-mg-12">
+            <h2>{{employeeData.firstName + "'s Details"}}</h2>
+      </div>  
+    </div>
+    <mat-divider></mat-divider>
+  <div class="row">
+    <div class="col-mg-6">
+        <div class="container-fluid">
+          <img [src]="photoURLChange">
+        </div>
+    </div>
+    <div class="col-mg-6">
+        <div class="container-fluid">
+            <div class="table-responsive">          
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>First Name  :</td>
+                      <td>{{employeeData.firstName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name  :</td>
+                        <td>{{employeeData.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Role :</td>
+                        <td>{{employeeData.role.roleName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email :</td>
+                        <td><a [href]="'mailto:'+employeeData.emailId">{{employeeData.emailId}}</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+          </div>
+    </div>  
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row">
+      <div class="col-mg-12">
+          <mat-tab-group>
+              <mat-tab label="Details">
+                  <mat-list>
+                      <mat-list-item>
+                          <strong>Employee ID </strong>:{{employeeData.employeeId}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+                      
+                      <mat-list-item>
+                          <strong>Date of Birth</strong> :{{employeeData.dob | date}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+      
+                      <mat-list-item>
+                          <strong>Date of Joining</strong> :{{employeeData.joiningDate | date}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+      
+                      <mat-list-item>
+                          <strong>Team</strong> :{{employeeData.team.teamName}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                      <mat-list-item>
+                          <strong>Departmnent</strong> :{{employeeData.departmnent.departmentName}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                    </mat-list>
+              </mat-tab>
+              <mat-tab label="Contact Details">
+                  <mat-list>
+                      <mat-list-item>
+                          <strong>Mob (Office)</strong> :{{employeeData.contactDetail.mobileOffice}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+                      
+                      <mat-list-item>
+                          <strong>Mob (Personal)</strong> :{{employeeData.contactDetail.mobilePersonal}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+      
+                      <mat-list-item>
+                          <strong>Skype ID</strong> :{{employeeData.contactDetail.skypeId}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+      
+                      <mat-list-item>
+                          <strong>Slack ID</strong> :{{employeeData.contactDetail.slackId}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                      <mat-list-item>
+                          <strong>Address</strong> :{{employeeData.contactDetail.address}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                      <mat-list-item>
+                          <strong>Facebook</strong> :{{employeeData.contactDetail.fbLink}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                      <mat-list-item>
+                          <strong>Twitter</strong> :{{employeeData.contactDetail.twitterLink}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                      <mat-list-item>
+                          <strong>GitHub</strong> :{{employeeData.contactDetail.gitHubLink}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                      <mat-list-item>
+                          <strong>Linkdin</strong> :{{employeeData.contactDetail.linkdinLink}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                    </mat-list>
+              </mat-tab>
+              <mat-tab label="Employee Skills">
+                    <mat-list>
+                        <mat-list-item *ngFor="let item of employeeData.employeeSkills">
+                                <strong>{{item?.skillName}}</strong> :{{item?.skillLevel}}
+                                <mat-divider></mat-divider>
+                        </mat-list-item>
+                        
+                    </mat-list>
+              </mat-tab>
+              <mat-tab label="Biography">
+                  <mat-list>
+                      <mat-list-item>
+                          <strong>About</strong> :{{employeeData.bio.about}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+                      
+                      <mat-list-item>
+                          <strong>Hobbies</strong> :{{employeeData.bio.hobbies}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+      
+                      <mat-list-item>
+                          <strong>Interests</strong> :{{employeeData.bio.interests}}
+                          <mat-divider></mat-divider>
+                      </mat-list-item>
+                      
+
+                    </mat-list>
+              </mat-tab>
+          </mat-tab-group>
+        </div>
+  </div>  
+
+</div> 
+</mat-card> 

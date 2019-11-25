@@ -1,0 +1,25 @@
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: -webkit-fill-available;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    margin-left: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#skillsection {
+    width: 40%;
+}

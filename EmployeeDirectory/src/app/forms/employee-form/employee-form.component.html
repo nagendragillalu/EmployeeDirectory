@@ -1,0 +1,343 @@
+
+<div *ngIf="addStatusEmployeeCode">
+    <div class="alert alert-success">
+        <strong>Success!</strong> 
+        <h4>Employeed is added to the records with 
+          Employee Id:<a routerLink="/employee/{{addStatusEmployeeCode.value}}">{{addStatusEmployeeCode.value}}</a></h4>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="addNewEmployee()" >Add Employee</button>
+</div>
+<form *ngIf="!addStatusEmployeeCode" [formGroup]="employeeForm" class="conatiner-fluid">
+<mat-accordion >
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+
+        <mat-expansion-panel-header>
+          <mat-panel-title><b>Employee Details</b> <span><i class="fas fa-user-circle"></i></span></mat-panel-title>
+          <mat-panel-description>
+            Add Employee Basic Details
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+
+        <mat-form-field>
+            <input formControlName="firstName" matInput placeholder="First Name">
+          </mat-form-field>
+          <div *ngIf="employeeForm.get('firstName').errors && (employeeForm.get('firstName').touched || employeeForm.get('firstName').dirty)">
+            <mat-error *ngIf="employeeForm.get('firstName').errors.required">
+              Value is required!
+            </mat-error>
+
+            <mat-error *ngIf="employeeForm.get('firstName').errors.minlength">
+                Minimum 2 character's needed!
+              </mat-error>
+
+              <mat-error *ngIf="employeeForm.get('firstName').errors.maxlength">
+                  Maximum characters shouldn't exceed 20
+                </mat-error>
+          </div>
+
+    <br>
+        <mat-form-field>
+            <input formControlName="lastName" matInput placeholder="Last Name">
+          </mat-form-field>
+
+          <div *ngIf="employeeForm.get('lastName').errors && (employeeForm.get('lastName').touched || employeeForm.get('lastName').dirty)">
+              <mat-error *ngIf="employeeForm.get('lastName').errors.required">
+                Value is required!
+              </mat-error>
+  
+              <mat-error *ngIf="employeeForm.get('lastName').errors.minlength">
+                  Minimum 2 character's needed!
+                </mat-error>
+  
+                <mat-error *ngIf="employeeForm.get('lastName').errors.maxlength">
+                    Maximum characters shouldn't exceed 20
+                  </mat-error>
+            </div>
+    <br>
+        <mat-form-field class="example-full-width" hintLabel="">
+          <input formControlName="dob" matInput [matDatepicker]="dob" (focus)="dob.open()" placeholder="Provide Date of Birth">
+          <mat-hint align="end">YYYY/MM/DD</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="dob">
+            <mat-icon matDatepickerToggleIcon><i class="fas fa-calendar-alt"></i></mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #dob></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="employeeForm.get('dob').errors && (employeeForm.get('dob').touched || employeeForm.get('dob').dirty)">
+            <mat-error *ngIf="employeeForm.get('dob').errors.required">
+              Value is required!
+            </mat-error>
+          </div>
+
+    <br>
+        <mat-form-field class="example-full-width" hintLabel="">
+          <input formControlName="joiningDate" matInput [matDatepicker]="joiningDate" (focus)="joiningDate.open()" placeholder="Provide Date of Joining">
+          <mat-hint align="end">YYYY/MM/DD</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="joiningDate">
+            <mat-icon matDatepickerToggleIcon><i class="fas fa-calendar-alt"></i></mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #joiningDate></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="employeeForm.get('joiningDate').errors && (employeeForm.get('joiningDate').touched || employeeForm.get('joiningDate').dirty)">
+            <mat-error *ngIf="employeeForm.get('joiningDate').errors.required">
+              Value is required!
+            </mat-error>
+          </div>
+    <br>
+        <mat-form-field>
+          <input formControlName="emailId" matInput type="email" placeholder="Email ID">
+          <i class="far fa-envelope"></i>
+        </mat-form-field>
+        <div *ngIf="employeeForm.get('emailId').errors && (employeeForm.get('emailId').touched || employeeForm.get('emailId').dirty)">
+            <mat-error *ngIf="employeeForm.get('emailId').errors.required">
+              Value is required!
+            </mat-error>
+
+            <mat-error *ngIf="employeeForm.get('emailId').errors.email">
+                Emial Format not correct!
+              </mat-error>
+          </div>
+    <br>
+        <mat-form-field formGroupName = "role">
+            <mat-select placeholder="Employee Role" formControlName="roleId" >
+              <mat-option *ngFor="let item of roles" [value]="item.roleId">
+                {{item.roleName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('role.roleId').errors && 
+          (this.employeeForm.get('role.roleId').touched || this.employeeForm.get('role.roleId').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('role.roleId').errors.required">
+                Value is required!
+              </mat-error>
+            </div>
+      <br>
+          <mat-form-field formGroupName = "departmnent">
+              <mat-select placeholder="Employee Department" formControlName="departmentId" >
+                <mat-option *ngFor="let item of departments" [value]="item.departmentId">
+                  {{item.departmentName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="this.employeeForm.get('departmnent.departmentId').errors &&
+             (this.employeeForm.get('departmnent.departmentId').touched || this.employeeForm.get('departmnent.departmentId').dirty)">
+                <mat-error *ngIf="this.employeeForm.get('departmnent.departmentId').errors.required">
+                  Value is required!
+                </mat-error>
+              </div>
+
+       <br>
+            <mat-form-field formGroupName = "team">
+                <mat-select placeholder="Employee Team" formControlName="teamId" >
+                  <mat-option *ngFor="let item of teams" [value]="item.teamId">
+                    {{item.teamName}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div *ngIf="this.employeeForm.get('team.teamId').errors && 
+              (this.employeeForm.get('team.teamId').touched || this.employeeForm.get('team.teamId').dirty)">
+                  <mat-error *ngIf="this.employeeForm.get('team.teamId').errors.required">
+                    Value is required!
+                  </mat-error>
+                </div>
+        <br>
+            <mat-form-field>
+                <input formControlName="SPOC" matInput placeholder="Single Point of Contant for">
+             </mat-form-field>
+
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel formGroupName="contactDetail" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Contact Details<i class="fas fa-address-card"></i>
+          </mat-panel-title>
+          <mat-panel-description>
+            Employee Contact Details
+            <mat-icon>map</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <mat-form-field >
+          <input matInput formControlName="mobileOffice" placeholder="Mobile Number(Office)" for>
+        </mat-form-field>
+        <div *ngIf="this.employeeForm.get('contactDetail.mobileOffice').errors && 
+        (this.employeeForm.get('contactDetail.mobileOffice').touched || this.employeeForm.get('contactDetail.mobileOffice').dirty)">
+            <mat-error *ngIf="this.employeeForm.get('contactDetail.mobileOffice').errors.required">
+              Value is required!
+            </mat-error>
+            <mat-error *ngIf="this.employeeForm.get('contactDetail.mobileOffice').errors.pattern">
+                Please provide valid phone number
+              </mat-error>
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.mobileOffice').errors.maxlength">
+                  Should no exceed 10 digits
+                </mat-error>
+          </div>
+    <br>
+        <mat-form-field >
+            <input matInput formControlName="mobilePersonal" placeholder="Mobile Number(Personal)" for>
+          </mat-form-field>
+
+          <div *ngIf="this.employeeForm.get('contactDetail.mobilePersonal').errors && 
+          (this.employeeForm.get('contactDetail.mobilePersonal').touched || this.employeeForm.get('contactDetail.mobilePersonal').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.mobilePersonal').errors.required">
+                Value is required!
+              </mat-error>
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.mobilePersonal').errors.pattern">
+                  Please provide valid phone number
+                </mat-error>
+                <mat-error *ngIf="this.employeeForm.get('contactDetail.mobilePersonal').errors.maxlength">
+                    Should no exceed 14 digits
+                  </mat-error>
+            </div>
+
+    <br>
+        <mat-form-field >
+              <input matInput formControlName="skypeId" placeholder="Skype ID" >
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('contactDetail.skypeId').errors && 
+          (this.employeeForm.get('contactDetail.skypeId').touched || this.employeeForm.get('contactDetail.skypeId').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.skypeId').errors.maxlength">
+                Should not exceed more than 50 characters !
+              </mat-error>
+           </div>
+    <br>
+          <mat-form-field >
+              <input matInput formControlName="slackId" placeholder="Slack ID" >
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('contactDetail.slackId').errors && 
+          (this.employeeForm.get('contactDetail.slackId').touched || this.employeeForm.get('contactDetail.slackId').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.slackId').errors.maxlength">
+                Should not exceed more than 50 characters !
+              </mat-error>
+           </div>
+
+    <br>
+          <mat-form-field >
+              <textarea matInput formControlName="address" placeholder="Residence Address" ></textarea>
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('contactDetail.address').errors && 
+          (this.employeeForm.get('contactDetail.address').touched || this.employeeForm.get('contactDetail.address').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.address').errors.maxlength">
+                Should not exceed more than 250 characters !
+              </mat-error>
+           </div>
+    <br>
+          <mat-form-field >
+              <input matInput formControlName="fbLink" placeholder="Facebook Link" >
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('contactDetail.fbLink').errors && 
+          (this.employeeForm.get('contactDetail.fbLink').touched || this.employeeForm.get('contactDetail.fbLink').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.fbLink').errors.maxlength">
+                Should not exceed more than 50 characters !
+              </mat-error>
+           </div>
+    <br>
+          <mat-form-field >
+              <input matInput formControlName="twitterLink" placeholder="Twitter Link" >
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('contactDetail.twitterLink').errors && 
+          (this.employeeForm.get('contactDetail.twitterLink').touched || this.employeeForm.get('contactDetail.twitterLink').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.twitterLink').errors.maxlength">
+                Should not exceed more than 50 characters !
+              </mat-error>
+           </div>
+     <br>
+          <mat-form-field >
+              <input matInput formControlName="gitHubLink" placeholder="GitHub Link" >
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('contactDetail.gitHubLink').errors && 
+          (this.employeeForm.get('contactDetail.gitHubLink').touched || this.employeeForm.get('contactDetail.gitHubLink').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.gitHubLink').errors.maxlength">
+                Should not exceed more than 50 characters !
+              </mat-error>
+           </div>
+     <br>
+          <mat-form-field >
+              <input matInput formControlName="linkdinLink" placeholder="Linkdin Link" >
+          </mat-form-field>
+          <div *ngIf="this.employeeForm.get('contactDetail.linkdinLink').errors && 
+          (this.employeeForm.get('contactDetail.linkdinLink').touched || this.employeeForm.get('contactDetail.linkdinLink').dirty)">
+              <mat-error *ngIf="this.employeeForm.get('contactDetail.linkdinLink').errors.maxlength">
+                Should not exceed more than 50 characters !
+              </mat-error>
+           </div>
+    
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel formGroupName="bio" [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Biography
+          </mat-panel-title>
+          <mat-panel-description>Employee Biography</mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <mat-form-field >
+            <input matInput formControlName="about" placeholder="About Employee" >
+        </mat-form-field>
+        <div *ngIf="this.employeeForm.get('bio.about').errors && 
+        (this.employeeForm.get('bio.about').touched || this.employeeForm.get('bio.about').dirty)">
+            <mat-error *ngIf="this.employeeForm.get('bio.about').errors.maxlength">
+              Value required !
+            </mat-error>
+         </div>
+    <br>
+        <mat-form-field >
+            <input matInput formControlName="hobbies" placeholder="Hobbies" >
+        </mat-form-field>
+    <br>
+        <mat-form-field >
+            <input matInput formControlName="interests" placeholder="Interests" >
+        </mat-form-field>
+    <br>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+
+        <mat-expansion-panel  [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>Employee Skills</mat-panel-title>
+                  <mat-panel-description>Skill Matrix</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div formArrayName="employeeSkills" *ngFor="let skill of employeeForm.get('employeeSkills').controls; let i = index">
+                  <div [formGroupName]="i">
+                    <mat-form-field id="skillsection">
+                        <mat-select placeholder="Skill Name" formControlName="skillId" >
+                          <mat-option *ngFor="let item of skills" [value]="item.skillId">
+                            {{item.skillName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                    <mat-form-field id="skillsection">
+                        <mat-select placeholder="Skill Level" formControlName="skillLevel" >
+                            <mat-option value="Beginner">Beginner</mat-option>
+                            <mat-option value="Intermediate">Intermediate</mat-option>
+                            <mat-option value="Advance">Advance</mat-option>
+                            <mat-option value="Expert">Expert</mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                  </div>
+              </div>
+                <mat-action-row>
+                  <button mat-button color="success" (click)="addFormGroup()">Add More Skills</button>
+                  <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                  <button mat-button color="primary" (click)="nextStep()">End</button>
+                </mat-action-row>
+         </mat-expansion-panel>
+
+  </mat-accordion>
+  <button [disabled]="!employeeForm.valid" type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+  <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
+</form>

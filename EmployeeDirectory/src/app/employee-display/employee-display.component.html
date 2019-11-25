@@ -1,0 +1,35 @@
+    <div> 
+
+    <button id="searchSelection" mat-button [matMenuTriggerFor]="menu" class="btn btn-primary dropdown-toggle">Search By</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)='byEmployeeId()'>Employee Id</button>
+      <button mat-menu-item (click)='byFirstName()'>First Name</button>
+      <button mat-menu-item (click)='byLastName()'>Last Name</button>
+    </mat-menu>
+
+<form>
+    <mat-form-field class="">
+        <input id="searchbox" matInput [placeholder]='searchBy' [(ngModel)]="searchString" name="search">
+    </mat-form-field>
+</form>
+
+      <div >          
+          <mat-grid-list [cols]="breakpoint"  rowHeight="400px" (window:resize)="onResize($event)">
+              <mat-grid-tile class="mat-grid-tile" colspan="2" *ngFor="let item of _employee_list | employeeFilterPipe:searchString" >
+                  <mat-card class="employee-card">
+                      <img mat-card-image [src]="item.photoUrl+item.employeeId" class="img-circle">
+                      <mat-card-footer>
+                        <a routerLink="/employee/{{item.employeeId}}"> 
+                            <mat-card-title>{{item.firstName}}   {{item.lastName}}</mat-card-title>
+                        </a> 
+                        <mat-card-subtitle>{{item.role.roleName}}</mat-card-subtitle>
+                      </mat-card-footer>
+                  </mat-card>
+              </mat-grid-tile>
+             </mat-grid-list>
+      </div>
+     
+</div>
+
+
+  

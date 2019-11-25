@@ -1,0 +1,19 @@
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 0px solid #dee2e6; 
+}
+
+.mat-tab-body.mat-tab-body-active {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden!important;
+    z-index: 1;
+    flex-grow: 1;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    padding-top: 11px;
+}

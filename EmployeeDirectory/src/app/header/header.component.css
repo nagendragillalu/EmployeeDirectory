@@ -1,0 +1,56 @@
+.nav {
+    margin-bottom: 100;
+    margin-top: 100;
+    border-radius: 20;
+  }
+
+
+  .mat-toolbar {
+    background: #085dbde1;
+    color: #fff;
+    padding: 0px,15px;
+    padding-left: 10;
+    padding-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+h1{
+  font-size: 28px;
+}
+
+.example-icon {
+  padding: 0 50px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+  flex-flow: row-reverse wrap;
+}
+.inset {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,0.6), 
+    0 1px 1px rgba(0,0,0,0.1);
+  background-color: transparent !important;
+  z-index: 999;
+}
+
+.inset img {
+  border-radius: inherit;
+  width: inherit;
+  height: inherit;
+  display: block;
+  position: relative;
+  z-index: 998;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  /* padding: 0; */
+  /* padding-left: 8px; */
+  margin-left: 10px;
+}

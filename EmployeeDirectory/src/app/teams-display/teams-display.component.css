@@ -1,0 +1,21 @@
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 0 2px 1px 1px rgba(0,0,0,.2),
+     0 1px 1px 0 rgba(0,0,0,.14),
+      0 2px 16px 9px rgba(0,0,0,.12);
+    margin-top: 20px;
+}
+
+#team_tile {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #146bc9;
+  }
+
+  #team_tile:hover {
+    background-color: #146bc9;
+    color: white;
+  }
+
+  a{
+    text-decoration:none;
+  }

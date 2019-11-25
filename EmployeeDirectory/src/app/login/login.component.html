@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-lg-12">
+            <app-header [userData]='user' (signOut)='signOut()' ></app-header> 
+    </div>
+</div>
+
+<div *ngIf="user" class="row">
+    <div class="col-lg-2">
+        <app-menu> </app-menu> 
+    </div>   
+    
+    <div class="col-lg-7">
+         <router-outlet></router-outlet>
+    </div>
+
+    <div class="col-lg-3">
+        <app-notification></app-notification>
+    </div>
+</div>
+
+<div *ngIf="!user" class="row row-centered container">
+  <div class="col-lg-6 offset-lg-6">
+    <div class="card text-center">
+        <h6 class="card-header">
+          Login to Employee Directory
+        </h6>
+        <div class="card-block">
+          <h4 class="card-title">Not signed in</h4>
+          <p class="card-text">Sign in with</p>
+        </div>
+        <div class="card-block">
+          <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()">
+            Google</button>
+           
+            <!--<div class="g-signin2" (click)="test()" data-theme="dark"></div>
+-->
+        </div>
+      </div> 
+    </div>
+</div>  

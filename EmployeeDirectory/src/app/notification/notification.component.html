@@ -1,0 +1,42 @@
+
+<div class="container-fluid" >
+<div class="row" *ngIf="birthDayCards">
+  <div class="col-lg-12" id="BDayCard">
+    <h3 (click)="test()">This Month's Birthday</h3>
+    <ngb-carousel >
+      <ng-template ngbSlide *ngFor="let item of birthDayCards">
+        <mat-card class="employee-card">
+            <img mat-card-image [src]="item.photoUrl+item.employeeId" class="img-circle">
+            <mat-card-footer>
+              <mat-card-title>{{item.fName}} {{item.lName}}</mat-card-title>
+              <mat-card-subtitle>{{item.greetDate | date: 'MMM d'}}</mat-card-subtitle>
+            </mat-card-footer>
+        </mat-card>
+      </ng-template>
+
+    </ngb-carousel>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="AnniverCards">
+    <div class="col-lg-12" id="BDayCard">
+      <h3>This Month's Anniversaries</h3>
+      <ngb-carousel >
+        <ng-template ngbSlide *ngFor="let item of AnniverCards">
+          <mat-card class="employee-card">
+              <img mat-card-image [src]="item.photoUrl+item.employeeId" class="img-circle">
+              <mat-card-footer>
+                <mat-card-title>{{item.fName}} {{item.lName}}</mat-card-title>
+                <mat-card-subtitle>{{item.yearCount}} Years
+                  on {{item.greetDate | date: 'MMM d'}}</mat-card-subtitle>
+              </mat-card-footer>
+          </mat-card>
+        </ng-template>
+  
+      </ngb-carousel>
+    </div>
+  </div>
+
+
+</div>

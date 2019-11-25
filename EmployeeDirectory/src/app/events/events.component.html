@@ -1,0 +1,41 @@
+<div id="corners" class="container-fluid">
+  <h3 class="pagetitle"> All Events</h3>
+</div>
+<div  *ngFor="let item of allEvents" id="eventsBox">
+  <div class="container-fluid">
+      <div class="card" >
+          <img class="card-img-top" [src]='item.eventPhotoURL+item?.eventId' alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{item?.eventName}}</h5>
+            <p class="card-text">{{item?.eventDiscription}}</p>
+          </div>
+
+          <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Event Details
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Date,Time,Address...
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Venue: {{item?.venu}}</li>
+                    <li class="list-group-item">Event Date : {{item?.eventDate| date:'medium'}}</li>
+                    <li class="list-group-item">Event Start on :{{item?.eventFromTime| date:'medium'}}</li>
+                    <li class="list-group-item">Event End on :{{item?.eventtoTime| date:'medium'}}</li>
+                    <li class="list-group-item">Organizer :{{item?.organizer}}</li>
+                  </ul>
+                  <div class="card-body">
+                    <a href="#" class="card-link">More Details</a>
+                  </div>
+            
+              </mat-expansion-panel>
+            </mat-accordion>
+
+        </div>
+
+  </div>
+
+</div>

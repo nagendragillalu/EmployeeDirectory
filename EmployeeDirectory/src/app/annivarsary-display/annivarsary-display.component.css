@@ -1,0 +1,9 @@
+.mat-card-actions, .mat-card-content, .mat-card-subtitle {
+    display: block;
+    margin-bottom: 0px;
+}
+
+#s_icon{
+    padding-left: 10px;
+    padding-right: 10px;
+}
