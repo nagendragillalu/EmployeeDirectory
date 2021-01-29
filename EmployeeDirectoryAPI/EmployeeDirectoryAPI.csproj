@@ -17,7 +17,7 @@
     <PackageReference Include="Google.Apis.Auth" Version="1.37.0" />
     <PackageReference Include="Google.Apis.Core" Version="1.37.0" />
     <PackageReference Include="Google.Apis.Oauth2.v2" Version="1.37.0.1404" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="log4net" Version="2.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
     <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
